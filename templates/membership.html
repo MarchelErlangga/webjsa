@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../static/img/favicon.png" type="image/png" />
+  <title>Gym Membership</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+
+
+  <style>
+    .nav-link {
+      color: gray;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: white;
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="../static/img/logo-jsa.png" alt="Logo" class="img-fluid" style="max-height: 50px" />
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto d-flex align-items-center">
+          <li class="nav-item">
+            <a class="nav-link active text-white" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/membership">Membership</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/facilities">Facilities</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/prabooking">Booking</a>
+          </li>
+          {% if 'user' not in session %}
+          <li class="nav-item">
+            <a href="/register">
+              <button type="button" class="btn btn-secondary"
+                style="margin-right: 10px; margin-left: 20px;">Register</button>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/login">
+              <button type="button" class="btn btn-success">Login</button>
+            </a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/profile" data-bs-toggle="tooltip"
+              title="Profil ({{session['user']}})">
+              <i class="bi bi-person-fill fs-3"></i>
+              <span class="d-none">{{session['user']}}</span>
+            </a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="bg-success text-white text-center py-5">
+    <div class="container">
+      <h1 class="display-4">Ayo Gabung Membership Kami!</h1>
+      <p class="lead">
+        Pilih paket yang sesuai dengan kebutuhan anda, dan mulai perjalanan
+        fitness anda sekarang juga!
+      </p>
+    </div>
+  </header>
+
+  <!-- Membership Plans -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Paket Membership</h2>
+      <div class="row">
+        <!-- Plan 1 -->
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="../static/img/plan1.jpg" class="card-img-top img-fluid" style="height: 200px; object-fit: cover"
+              alt="3 Months Plan" />
+            <div class="card-body text-center">
+              <h5 class="card-title">Paket Basic</h5>
+              <p class="card-text">Rp.150.000 / bulan</p>
+              <ul class="list-unstyled">
+                <li>Akses peralatan gym</li>
+                <li>Akses loker</li>
+              </ul>
+              <a href="#membershipForm" class="btn btn-dark">Daftar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Plan 2 -->
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="../static/img/plan2.jpg" class="card-img-top img-fluid" style="height: 200px; object-fit: cover"
+              alt="3 Months Plan" />
+            <div class="card-body text-center">
+              <h5 class="card-title">Paket Standard</h5>
+              <p class="card-text">Rp. 450.000 / 3 bulan</p>
+              <ul class="list-unstyled">
+                <li>Semua di paket bulanan</li>
+                <li>Gratis 3x sesi kelas muaythai</li>
+              </ul>
+              <a href="#membershipForm" class="btn btn-dark">Daftar</a>
+            </div>
+          </div>
+        </div>
+        <!-- Plan 3 -->
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="../static/img/plan3.jpg" class="card-img-top img-fluid" style="height: 200px; object-fit: cover"
+              alt="3 Months Plan" />
+            <div class="card-body text-center">
+              <h5 class="card-title">Paket Premium</h5>
+              <p class="card-text">Rp. 1.200.000 / 12 bulan</p>
+              <ul class="list-unstyled">
+                <li>Diskon 33%, semua dipaket bulanan</li>
+                <li>Gratis kelas muaythai 12x sesi</li>
+              </ul>
+              <a href="#membershipForm" class="btn btn-dark">Daftar</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Membership Form -->
+  <section id="membershipForm" class="bg-success py-5">
+    <div class="container">
+      <h2 class="text-white text-center mb-4">Daftar Sekarang!</h2>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      {% for category, message in messages %}
+      <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+      {% endif %}
+      {% endwith %}
+      <form id="form">
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="fullName" class="text-white form-label">Nama lengkap</label>
+            <input type="text" class="form-control" id="fullName" placeholder="Masukan Nama Lengkap" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="email" class="text-white form-label">Email</label>
+            <input type="email" class="form-control" id="email" placeholder="Masukkan email-mu" />
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 mb-3">
+            <label for="phone" class="text-white form-label">No. HP</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Masukan No.HP" />
+          </div>
+          <div class="col-md-6 mb-3">
+            <label for="membershipPlan" class="text-white form-label">Pilih Paket</label>
+            <select class="form-select" id="membershipPlan">
+              <option value="">Pilih Paket</option>
+              <option value="basic">Paket Basic</option>
+              <option value="standard">Paket Standard</option>
+              <option value="premium">Paket Premium</option>
+            </select>
+          </div>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-dark" id="submitBtn" disabled>
+            Submit
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <script>
+    $(document).ready(function () {
+      const form = $('#form');
+      const submitBtn = $('#submitBtn');
+
+      // Fungsi untuk mengecek apakah semua input sudah terisi
+      function checkFormValidity() {
+        const fullName = $('#fullName').val().trim();
+        const email = $('#email').val().trim();
+        const phone = $('#phone').val().trim();
+        const membershipPlan = $('#membershipPlan').val();
+
+        // Jika semua input terisi, tombol submit diaktifkan
+        if (fullName && email && phone && membershipPlan) {
+          submitBtn.prop('disabled', false);
+        } else {
+          submitBtn.prop('disabled', true);
+        }
+      }
+
+      // Tambahkan event listener ke setiap input
+      form.on('input', checkFormValidity);
+
+      // Handler untuk submit form
+      // Handler untuk submit form
+      form.on('submit', function (e) {
+        e.preventDefault(); // Mencegah submit form default
+
+        // Simpan data ke localStorage
+        localStorage.setItem("fullName", $('#fullName').val());
+        localStorage.setItem("email", $('#email').val());
+        localStorage.setItem("phone", $('#phone').val());
+        localStorage.setItem("membershipPlan", $('#membershipPlan').val());
+
+        // Cek status login terlebih dahulu
+        $.ajax({
+          url: '/check_login_status',
+          method: 'GET',
+          success: function (response) {
+            if (!response.is_logged_in) {
+              // Jika belum login, tampilkan pesan dan arahkan ke login
+              $('#membershipForm .container .alert').remove();
+              $('#membershipForm .container').prepend(`
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    Silakan login terlebih dahulu untuk melanjutkan pendaftaran membership.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                `);
+
+              // Scroll ke pesan
+              $('html, body').animate({
+                scrollTop: $('#membershipForm').offset().top
+              }, 300);
+
+              // Redirect ke halaman login setelah sedikit waktu
+              setTimeout(function () {
+                window.location.href = "/login";
+              }, 2000);
+
+              return;
+            }
+
+            // Jika sudah login, lanjutkan proses cek membership
+            const email = $('#email').val();
+
+            // Cek status membership via AJAX
+            $.ajax({
+              url: '/check_membership_status',
+              method: 'POST',
+              contentType: 'application/json',
+              data: JSON.stringify({ email: email }),
+              success: function (data) {
+                console.log('Respon server:', data);
+
+                // Cek apakah email terdaftar di sistem
+                if (data.registered_email === null) {
+                  $('#membershipForm .container .alert').remove();
+                  $('#membershipForm .container').prepend(`
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            Email yang Anda gunakan tidak terdaftar. Silakan gunakan email yang sama saat mendaftar akun.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        `);
+
+                  $('html, body').animate({
+                    scrollTop: $('#membershipForm').offset().top
+                  }, 300);
+
+                  return;
+                }
+
+                // Cek status membership
+                if (data.status === 'Aktif') {
+                  $('#membershipForm .container .alert').remove();
+
+                  $('html, body').animate({
+                    scrollTop: $('#membershipForm').offset().top
+                  }, 300);
+
+                  $('#membershipForm .container').prepend(`
+                        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            Saat ini Anda sudah terdaftar sebagai anggota aktif. Silakan tinjau informasi keanggotaan Anda di halaman profil.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                        `);
+                } else {
+                  // Redirect ke halaman pembayaran
+                  window.location.href = "/payment";
+                }
+              },
+              error: function (xhr, status, error) {
+                console.error('Error:', error);
+                console.log('Response:', xhr.responseText);
+                alert('Terjadi kesalahan saat memeriksa status membership. Silakan coba lagi.');
+              }
+            });
+          },
+          error: function () {
+            alert('Terjadi kesalahan saat memeriksa status login.');
+          }
+        });
+      });
+
+      // Tambahkan event listener pada tombol submit
+      submitBtn.on('click', function (e) {
+        form.submit(); // Trigger submit form
+      });
+    });
+
+    $(document).ready(function () {
+      // Fungsi untuk scroll ke section membership form
+      function scrollToMembershipForm() {
+        const $membershipForm = $('#membershipForm');
+        if ($membershipForm.length) {
+          $('html, body').animate({
+            scrollTop: $membershipForm.offset().top
+          }, 500);
+        }
+      }
+
+      // Cek apakah ada flash message
+      const $flashMessages = $('.alert');
+      if ($flashMessages.length > 0) {
+        scrollToMembershipForm();
+      }
+
+      // Tambahkan event listener untuk menutup alert
+      $flashMessages.each(function () {
+        const $closeButton = $(this).find('.btn-close');
+        $closeButton.on('click', function () {
+          $(this).closest('.alert').removeClass('show').addClass('d-none');
+        });
+      });
+    });
+  </script>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-3" style="margin-top: -35px">
+          <img src="../static/img/logo-jsa.png" alt="" width="170px" />
+        </div>
+        <div class="col-md-3">
+          <h5 class="mb-3">Informasi</h5>
+          <ul class="list-unstyled">
+            <li><a href="/about" class="text-white text-decoration-none">About us</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="mb-3">Layanan</h5>
+          <ul class="list-unstyled">
+            <li><a href="/membership" class="text-white text-decoration-none">Membership</a></li>
+            <li><a href="/prabooking" class="text-white text-decoration-none">Booking</a></li>
+          </ul>
+        </div>
+        <!-- Tambahkan Kolom Baru -->
+        <div class="col-md-3">
+          <h5 class="mb-3">Alamat</h5>
+          <div>
+            <a class="text-decoration-none text-white" href="https://maps.app.goo.gl/JTWUAjuuS6SjQQpT7">Jl.
+              HR. Lukman No.8, Cirimekar, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16917</a>
+          </div>
+        </div>
+        <div class="text-center mt-5">
+          <p>&copy; 2024 JSA Sports Hall</p>
+        </div>
+      </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/img/favicon.png" type="image/png" />
+    <title>Admin Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="../static/sytle/admin.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Script Anda -->
+    <script src="../static/js/dashboard_admin.js"></script>
+</head>
+<style>
+    .payment-proof-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        backdrop-filter: blur(5px);
+    }
+
+    .modal-container {
+        background-color: white;
+        border-radius: 12px;
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        max-width: 700px;
+        max-height: 90vh;
+        overflow: hidden;
+        position: relative;
+        z-index: 1001;
+        animation: modalSlideIn 0.3s ease-out;
+    }
+
+    @keyframes modalSlideIn {
+        from {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        to {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background-color: #f4f4f4;
+        border-bottom: 1px solid #e0e0e0;
+    }
+
+    .modal-header h3 {
+        margin: 0;
+        font-size: 18px;
+        color: #333;
+        font-weight: 600;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        font-size: 24px;
+        color: #666;
+        cursor: pointer;
+        transition: color 0.2s ease;
+    }
+
+    .close-btn:hover {
+        color: #000;
+    }
+
+    .modal-body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        background-color: #f9f9f9;
+    }
+
+    .image-container {
+        max-width: 100%;
+        max-height: 60vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .payment-proof-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .modal-footer {
+        padding: 15px 20px;
+        background-color: #f4f4f4;
+        border-top: 1px solid #e0e0e0;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .download-btn {
+        display: flex;
+        align-items: center;
+        padding: 8px 15px;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 6px;
+        transition: background-color 0.2s ease;
+    }
+
+    .download-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .download-btn ion-icon {
+        margin-right: 8px;
+    }
+
+    .close-modal-btn {
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 6px;
+        margin-right: 10px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        transition: background-color 0.2s ease;
+    }
+
+    .close-modal-btn:hover {
+        background-color: #555f66;
+    }
+
+    .close-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        border-radius: 50%;
+        transition: background-color 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .close-btn:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    .close-btn svg {
+        stroke: #6c757d;
+        transition: stroke 0.2s ease;
+    }
+
+    .close-btn:hover svg {
+        stroke: #000;
+    }
+
+    .modal-footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        padding: 15px 20px;
+        background-color: #f4f4f4;
+        border-top: 1px solid #e0e0e0;
+    }
+
+    .payment-proof-modal .image-container {
+        max-width: 60vh;
+        max-height: 60vh;
+        /* Batasi tinggi menjadi 60% viewport height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+
+    .payment-proof-modal .payment-proof-image {
+        max-width: 100%;
+        max-height: 100%;
+        /* Pastikan gambar tidak melebihi container */
+        object-fit: contain;
+        /* Pertahankan aspek rasio */
+        border-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .flash-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 9999;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .flash-container .alert {
+        width: 100%;
+        max-width: 600px;
+        margin: 10px;
+        text-align: center;
+    }
+
+    .btn {
+        padding: 5px 10px;
+        /* Mengurangi padding */
+        font-size: 14px;
+        /* Mengurangi ukuran font */
+        border: none;
+        border-radius: 4px;
+        /* Mengurangi radius border */
+        cursor: pointer;
+        transition: background-color 0.2s ease;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .btn-secondary:hover {
+        background-color: #555f66;
+    }
+</style>
+
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <div class="navigation">
+            <ul>
+                <li class="active">
+                    <a href="/admin">
+                        <span class="icon">
+                            <ion-icon name="home-outline"></ion-icon>
+                        </span>
+                        <span class="title">Dashboard</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/admin/user">
+                        <span class="icon">
+                            <ion-icon name="people-outline"></ion-icon>
+                        </span>
+                        <span class="title">Users</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/admin/membership">
+                        <span class="icon">
+                            <ion-icon name="cart-outline"></ion-icon>
+                        </span>
+                        <span class="title">Membership</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="/admin/booking">
+                        <span class="icon">
+                            <ion-icon name="chatbubbles-outline"></ion-icon>
+                        </span>
+                        <span class="title">Booking</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <span class="icon">
+                            <ion-icon name="log-out-outline"></ion-icon>
+                        </span>
+                        <span class="title">Sign Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                    <ion-icon name="menu-outline"></ion-icon>
+                </div>
+                <p style="margin-left: 750px;">{{session['admin']}}
+                <p>
+                <div class="user">
+                    <img src="../static/img/profile.png" alt="">
+                </div>
+            </div>
+
+            <!-- ======================= Cards ================== -->
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{jlh_users}}</div>
+                        <div class="cardName">Jumlah Pengguna</div>
+                    </div>
+                    <div class="iconBx">
+                        <ion-icon name="people-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{total_membership_aktif}}</div>
+                        <div class="cardName">Membership Aktif</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <ion-icon name="cart-outline"></ion-icon>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">{{jlh_booking}}</div>
+                        <div class="cardName">Booking</div>
+                    </div>
+
+                    <div class="iconBx">
+                        <ion-icon name="chatbubbles-outline"></ion-icon>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================ Order Details List ================= -->
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Membership Terbaru</h2>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Nama</td>
+                                <td>No Telp</td>
+                                <td>Paket</td>
+                                <td>Status Pembayaran</td>
+                                <td>Bukti Pembayaran</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for membership in recent_memberships %}
+                            <tr>
+                                <td>{{ membership.full_name }}</td>
+                                <td>{{ membership.phone }}</td>
+                                <td>{{membership.membership_plan|capitalize}}</td>
+                                <td>
+                                    <span
+                                        class="status {{ 'hijau' if membership.status == 'Terima' else 'merah' if membership.status == 'Tolak' else 'kuning' }}">
+                                        {{ membership.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    {% if membership.payment_proof %}
+                                    <button class="btn btn-primary"
+                                        onclick="showPaymentProof('/static/uploads/{{ membership.payment_proof }}')">
+                                        Lihat Bukti
+                                    </button>
+                                    {% else %}
+                                    <span>Pembayaran Offline</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ================= New Customers ================ -->
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Booking Terbaru</h2>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Nama</td>
+                                <td>Lapangan</td>
+                                <td>Tanggal</td>
+                                <td>Jam</td>
+                                <td>Status</td>
+                                <td>Bukti Pembayaran</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            {% for booking in recent_bookings %}
+                            {% set selesai = booking.jam | int + booking.durasi | int%}
+                            <tr>
+                                <td>{{booking.nama}}</td>
+                                <td>{{booking.durasi}}</td>
+                                <td>{{booking.tanggal}}</td>
+                                {% if selesai > 9 and booking.jam | int > 9 %}
+                                <td>{{booking.jam}}.00 - {{selesai}}.00</td>
+                                {% else %}
+                                <td>0{{booking.jam}}.00 - {{selesai}}.00</td>
+                                {% endif %}
+                                <td>
+                                    <span
+                                        class="status {{ 'biru' if booking.status == 'Booking' else 'kuning' if booking.status == 'Pending' else 'hijau' if booking.status == 'Selesai' else 'merah' }}">
+                                        {{ booking.status }}
+                                    </span>
+                                </td>
+                                <td>
+                                    {% if booking.payment_proof %}
+                                    <button class="btn btn-primary btn-sm"
+                                        onclick="showPaymentProof('/static/uploads/{{ booking.payment_proof }}')">
+                                        Lihat Bukti
+                                    </button>
+                                    {% else %}
+                                    <span>Pembayaran Offline</span>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Sign Out -->
+    <div id="signOutModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Sign Out</h2>
+            <p>Apakah Anda yakin ingin keluar?</p>
+            <div style="display: flex; gap: 10px; margin-top: 20px;">
+                <button id="confirmSignOut" class="status merah tombol">Sign Out</button>
+                <button id="cancelSignOut" class="status abu tombol">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="../static/js/dashboard_admin.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

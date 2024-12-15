@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" href="../static/img/favicon.png" type="image/png" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="icon" href="../static/img/favicon.png" type="image/png" />
+  <title>Gym Facilities</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <style>
+    .nav-link {
+      color: gray;
+      transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+      color: white;
+    }
+
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+      margin-top: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">
+        <img src="../static/img/logo-jsa.png" alt="Logo" class="img-fluid" style="max-height: 50px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto d-flex align-items-center">
+          <li class="nav-item">
+            <a class="nav-link active text-white" href="/home">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/membership">Membership</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/facilities">Facilities</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/prabooking">Booking</a>
+          </li>
+          {% if 'user' not in session %}
+          <li class="nav-item">
+            <a href="/register">
+              <button type="button" class="btn btn-secondary"
+                style="margin-right: 10px; margin-left: 20px;">Register</button>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/login">
+              <button type="button" class="btn btn-success">Login</button>
+            </a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/profile" data-bs-toggle="tooltip"
+              title="Profil ({{session['user']}})">
+              <i class="bi bi-person-fill fs-3"></i>
+              <span class="d-none">{{session['user']}}</span>
+            </a>
+          </li>
+          {% endif %}
+          <!-- <li class="nav-item">
+                            <a class="nav-link text-white" href="/profile">
+                                <i class="bi bi-person-fill fs-3"></i>
+                            </a>
+                        </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <!-- <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.html">
+          <img src="logo.png" alt="JSA Sports Hall" style="height: 80px" />
+        </a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="membership.html">Membership</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="facilities.html">Facilities</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="booking.html">Booking</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="profile.html">
+                <i class="fas fa-user fa-lg"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav> -->
+
+  <!-- Header -->
+  <header class="bg-success text-white text-center py-5">
+    <div class="container">
+      <h1 class="display-4">Fasilitas Kami</h1>
+      <p class="lead">
+        Jelajahi fasilitas kami yang dirancang untuk kebugaran Anda.
+      </p>
+    </div>
+  </header>
+
+  <!-- Facilities Section -->
+  <section class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Apa yang kami tawarkan?</h2>
+      <div class="row gy-4">
+        <!-- Facility 1 -->
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="../static/img/img1.jpg" class="card-img-top" alt="Gym Equipment" />
+            <div class="card-body">
+              <h5 class="card-title">Alat Gym Modern</h5>
+              <p class="card-text">
+                Nikmati peralatan gym terbaik untuk mencapai tujuan kebugaran
+                Anda dengan mudah.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Facility 2 -->
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="../static/img/img2.jpg" class="card-img-top" alt="Swimming Pool" />
+            <div class="card-body">
+              <h5 class="card-title">Fasilitas Kalistenik</h5>
+              <p class="card-text">
+                Terdapat juga media yang dapat digunakan untuk kalistenik.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Facility 3 -->
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="../static/img/sauna.jpg" class="card-img-top" alt="Sauna" />
+            <div class="card-body">
+              <h5 class="card-title">WC dengan shower</h5>
+              <p class="card-text">
+                Tersedia WC yang dilengkapi dengan shower bagi yang ingin
+                mandi, sehabis berolahraga.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Facility 4 -->
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="../static/img/img3.jpg" class="card-img-top" alt="Fitness Classes" />
+            <div class="card-body">
+              <h5 class="card-title">Lapangan Badminton</h5>
+              <p class="card-text">
+                Kami menyediakan lapangan badminton yang dapat disewa.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Facility 5 -->
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="../static/img/fac4.jpeg" class="card-img-top" alt="Lounge" />
+            <div class="card-body">
+              <h5 class="card-title">Semi Outdoor Lounge Area</h5>
+              <p class="card-text">
+                Area yang dapat digunakan untuk bersantai sehabis berolahraga
+                ataupun untuk ruang tunggu.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Facility 6 -->
+        <div class="col-md-4">
+          <div class="card shadow">
+            <img src="../static/img/plan2.jpg" class="card-img-top" alt="Personal Trainers" />
+            <div class="card-body">
+              <h5 class="card-title">Personal Trainers Bersertifikat</h5>
+              <p class="card-text">
+                Dapatkan bimbingan privat dari Personal Trainers kami yang
+                sudah bersertifikat.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container mt-5">
+      <div class="row">
+        <div class="col-md-3" style="margin-top: -35px;">
+          <img src="../static/img/logo-jsa.png" alt="" width="170px">
+        </div>
+        <div class="col-md-3">
+          <h5 class="mb-3">Informasi</h5>
+          <ul class="list-unstyled">
+            <li><a href="/about" class="text-white text-decoration-none">About us</a></li>
+            <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-md-3">
+          <h5 class="mb-3">Layanan</h5>
+          <ul class="list-unstyled">
+            <li><a href="/membership" class="text-white text-decoration-none">Membership</a></li>
+            <li><a href="/prabooking" class="text-white text-decoration-none">Booking</a></li>
+          </ul>
+        </div>
+        <!-- Tambahkan Kolom Baru -->
+        <div class="col-md-3">
+          <h5 class="mb-3">Alamat</h5>
+          <div>
+            <a class="text-decoration-none text-white" href="https://maps.app.goo.gl/JTWUAjuuS6SjQQpT7">Jl.
+              HR. Lukman No.8, Cirimekar, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16917</a>
+          </div>
+        </div>
+        <div class="text-center mt-5">
+          <p>&copy; 2024 JSA Sports Hall</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <!-- <footer class="bg-dark text-white text-center py-3">
+    <p class="mb-0">&copy; 2024 JSA Sports Hall. All Rights Reserved.</p>
+  </footer> -->
+</body>
+
+</html>

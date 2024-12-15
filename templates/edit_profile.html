@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../static/img/favicon.png" type="image/png" />
+    <title>Profile</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="icon" href="../static/logo-jsa.png" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+        integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+</head>
+<style>
+    body {
+        background-color: #f4f4f4;
+    }
+
+    .profile-container {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin-top: 50px;
+    }
+
+    .profile-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid #f1f1f1;
+        padding-bottom: 15px;
+        margin-bottom: 20px;
+    }
+
+    .profile-section {
+        margin-bottom: 20px;
+    }
+
+    .profile-label {
+        font-weight: 600;
+        color: #6c757d;
+        margin-bottom: 5px;
+    }
+
+    .form-control {
+        background-color: #f8f9fa;
+    }
+
+    .btn-custom {
+        display: flex;
+        gap: 10px;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../static/img/logo-jsa.png" alt="Logo" class="img-fluid" style="max-height: 50px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto d-flex align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/membership">Membership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/facilities">Facilities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/prabooking">Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/profile" data-bs-toggle="tooltip"
+                            title="Profil ({{session['user']}})">
+                            <i class="bi bi-person-fill fs-3"></i>
+                            <span class="d-none">{{session['user']}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Content -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <form action="{{ url_for('edit_profile') }}" method="POST" class="profile-container">
+                    <div class="profile-header">
+                        <h2 class="mb-0">Edit Profile</h2>
+                        <a href="{{ url_for('profile') }}" class="text-decoration-none">
+                            <i class="bi bi-x-circle text-danger fs-4"></i>
+                        </a>
+                    </div>
+
+                    <div class="profile-section">
+                        <label for="username" class="profile-label">Username</label>
+                        <input type="text" id="username" name="username" class="form-control"
+                            value="{{ user.username }}" readonly>
+                    </div>
+
+                    <div class="profile-section">
+                        <label for="email" class="profile-label">Email</label>
+                        <input type="email" id="email" name="email" class="form-control" value="{{ user.email }}"
+                            readonly>
+                    </div>
+
+                    <div class="profile-section">
+                        <label for="email" class="profile-label">No Telephone</label>
+                        <input type="text" id="no_telp" name="no_telp" class="form-control" value="{{user.no_telp}}"
+                            required>
+                    </div>
+
+                    <div class="btn-custom mt-4">
+                        <button type="submit" class="btn btn-success flex-grow-1">
+                            <i class="bi bi-save"></i> Simpan Perubahan
+                        </button>
+                        <a href="{{ url_for('profile') }}" class="btn btn-danger flex-grow-1">
+                            <i class="bi bi-x"></i> Batal
+                        </a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-dark text-white py-4" style="margin-top: 120px;">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-3" style="margin-top: -35px;">
+                    <img src="../static/logo-jsa.png" alt="" width="170px">
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Informasi</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/about" class="text-white text-decoration-none">About us</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Layanan</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/membership" class="text-white text-decoration-none">Membership</a></li>
+                        <li><a href="/prabooking" class="text-white text-decoration-none">Booking</a></li>
+                    </ul>
+                </div>
+                <!-- Tambahkan Kolom Baru -->
+                <div class="col-md-3">
+                    <h5 class="mb-3">Alamat</h5>
+                    <div>
+                        <a class="text-decoration-none text-white" href="https://maps.app.goo.gl/JTWUAjuuS6SjQQpT7">Jl.
+                            HR. Lukman No.8, Cirimekar, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16917</a>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <p>&copy; 2024 JSA Sports Hall</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+</body>
+
+</html>

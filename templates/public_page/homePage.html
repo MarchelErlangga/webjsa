@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="../static/img/favicon.png" type="image/png" />
+    <title>Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link rel="icon" href="../static/logo-jsa.png" type="image/x-icon">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        .carousel-item {
+            position: relative;
+        }
+
+        .carousel-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        .carousel-caption {
+            z-index: 2;
+        }
+
+        .nav-link {
+            color: gray;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: white;
+        }
+
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0;
+        }
+    </style>
+    <script>
+        function booking() {
+            window.location.href='/prabooking_public'
+        }
+    </script>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <img src="../static/img/logo-jsa.png" alt="Logo" class="img-fluid" style="max-height: 50px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto d-flex align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link active text-white" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/about_public">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/membership_public">Membership</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/facilities_public">Facilities</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="/prabooking_public">Booking</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/register"><button type="button" class="btn btn-secondary" style="margin-right: 10px; margin-left: 20px;">Register</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/login"><button type="button" class="btn btn-success">Login</button></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="overlay"></div>
+                <img src="../static/img/img2.jpg" class="d-block w-100" alt="..." style="height: 550px; object-fit: cover;">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center"
+                    style="top: 0; bottom: 0;">
+                    <h1 class="display-5 text-white">
+                        <span class="fw-bold">JSA Sports Hall</span>
+                    </h1>
+                    <p>Mulailah perjalanan kebugaranmu dengan fasilitas terbaik dan dukungan penuh untuk mencapai
+                        tujuanmu sekarang juga!</p>
+                    <button class="btn btn-dark" style="border-radius: 5px;" onclick="window.location.href='/login'">Gabung Sekarang</button>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="overlay"></div>
+                <img src="../static/img/img3.jpg" class="d-block w-100" alt="..."
+                    style="height: 550px; object-fit: cover;">
+                <div class="carousel-caption d-flex flex-column align-items-center justify-content-center"
+                    style="top: 0; bottom: 0;">
+                    <h1 class="display-5 text-white">
+                        <span class="fw-bold">JSA Sports Hall</span>
+                    </h1>
+                    <p>Mulailah perjalanan kebugaranmu dengan fasilitas terbaik dan dukungan penuh untuk mencapai
+                        tujuanmu sekarang juga!</p>
+                    <button class="btn btn-dark" style="border-radius: 5px;">Gabung Sekarang</button>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="d-flex align-items-center justify-content-center" style="height: 650px;">
+        <div class="container" style="overflow: hidden; width: 100%;">
+            <div class="row featurette w-100"
+                style="padding: 20px;margin-top: 65px; margin-bottom: 65px;background-color: inherit">
+                <div class="col-md-7 order-md-2 d-flex align-items-center justify-content-center ">
+                    <div style="margin-left: 30px;">
+                        <h3 class="fw-bold mb-3" style="margin-bottom: 30px;">Raih Versi Terbaik Dirimu!</h3>
+                        <p style="margin-bottom: 30px;">Nikmati fasilitas premium, mulai dari alat gym modern, pelatihan
+                            eksklusif
+                            dengan trainer profesional, hingga suasana latihan yang nyaman. Jangan hanya bermimpi,
+                            wujudkan
+                            target
+                            kesehatanmu bersama kami!</p>
+                        <button class="btn btn-success shadow"
+                            style="border-radius: 7px; margin-bottom: 40px; color: white;" onclick="window.location.href='/membership_public'">Lihat
+                            Membership
+                            <i class="bi bi-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="col-md-5 order-md-1">
+                    <div class="row">
+                        <div class="col-12">
+                            <img src="../static/img/membership2.jpg"
+                                class="featurette-image img-fluid border-0 shadow round"
+                                style="height: 400px; width: 400px; object-fit: cover; border-radius: 8px;" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="steps" class="container mt-5" style="padding-top: 35px; padding-bottom: 35px;">
+        <div class="row justify-content-center text-center">
+            <div class="col-12 mb-4">
+                <h2 class="fw-bold mb-5">Fasilitas</h2>
+            </div>
+        </div>
+        <div class="row justify-content-center text-center gap-5 mb-5">
+            <div class="col-12 col-md-3 mb-3">
+                <div class="card border-0 shadow round" style="height: 250px; width: 280px;">
+                    <div class="card-body gelembung">
+                        <div class="icon mb-3 text-primary text-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-node-plus" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M11 4a4 4 0 1 0 0 8 4 4 0 0 0 0-8M6.025 7.5a5 5 0 1 1 0 1H4A1.5 1.5 0 0 1 2.5 10h-1A1.5 1.5 0 0 1 0 8.5v-1A1.5 1.5 0 0 1 1.5 6h1A1.5 1.5 0 0 1 4 7.5zM11 5a.5.5 0 0 1 .5.5v2h2a.5.5 0 0 1 0 1h-2v2a.5.5 0 0 1-1 0v-2h-2a.5.5 0 0 1 0-1h2v-2A.5.5 0 0 1 11 5M1.5 7a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z" />
+                            </svg>
+                        </div>
+                        <h5 class="fw-bold">Lapangan Badminton</h5>
+                        <p>
+                            Cocok untuk latihan santai maupun bermain bersama teman.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <div class="card border-0 shadow round h-100" style="height: 250px; width: 280px;">
+                    <div class="card-body gelembung">
+                        <div class="icon mb-3 text-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-people-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
+                            </svg>
+                        </div>
+                        <h5 class="fw-bold">Trainer Profesional</h5>
+                        <p>
+                            Siap membimbing Anda mencapai target kebugaran dengan metode yang efektif dan aman.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-3 mb-3">
+                <div class="card border-0 shadow round h-100" style="height: 250px; width: 280px;">
+                    <div class="card-body gelembung">
+                        <div class="icon mb-3 text-success">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor"
+                                class="bi bi-person-arms-up" viewBox="0 0 16 16">
+                                <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3" />
+                                <path
+                                    d="m5.93 6.704-.846 8.451a.768.768 0 0 0 1.523.203l.81-4.865a.59.59 0 0 1 1.165 0l.81 4.865a.768.768 0 0 0 1.523-.203l-.845-8.451A1.5 1.5 0 0 1 10.5 5.5L13 2.284a.796.796 0 0 0-1.239-.998L9.634 3.84a.7.7 0 0 1-.33.235c-.23.074-.665.176-1.304.176-.64 0-1.074-.102-1.305-.176a.7.7 0 0 1-.329-.235L4.239 1.286a.796.796 0 0 0-1.24.998l2.5 3.216c.317.316.475.758.43 1.204Z" />
+                            </svg>
+                        </div>
+                        <h5 class="fw-bold">Alat Gym Modern</h5>
+                        <p>
+                            Peralatan lengkap untuk mendukung berbagai jenis latihan kebugaran. </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="display: flex; justify-content: center;">
+            <button class="btn btn-success shadow" style="border-radius: 7px;color: white;" onclick="window.location.href='/facilities_public'">Lihat
+                Selengkapnya</button>
+        </div>
+    </div>
+    <div class="container d-flex align-items-center justify-content-center" style="height: 650px;">
+        <div class="row featurette w-100"
+            style="padding: 20px;margin-top: 65px; margin-bottom: 65px;background-color: inherit">
+            <div class="col-md-5 order-md-2">
+                <div class="row">
+                    <div class="col-12">
+                        <img src="../static/img/booking.jpg" class="featurette-image img-fluid border-0 shadow round"
+                            style="height: 400px; width: 400px; object-fit: cover; border-radius: 8px;" alt="">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-7 order-md-1 d-flex align-items-center justify-content-center">
+                <div style="margin-left: 30px;">
+                    <h3 class="fw-bold mb-3" style="margin-bottom: 20px;">Ayo, Waktunya Smash!</h3>
+                    <p style="margin-bottom: 20px;">Pesan lapangan badminton sekarang dan nikmati permainan seru
+                        tanpa antri.
+                        Tantang temanmu, latih skill-mu, dan rasakan keseruannya!"</p>
+                    <button class="btn btn-success shadow" style="border-radius: 7px; margin-bottom: 20px;" onclick="booking()">Booking
+                        Sekarang
+                        <i class="bi bi-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="bg-dark text-white py-4 mt-5">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-3" style="margin-top: -35px;">
+                    <img src="../static/img/logo-jsa.png" alt="" width="170px">
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Informasi</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/about_public" class="text-white text-decoration-none">About us</a></li>
+                        <li><a href="#" class="text-white text-decoration-none">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h5 class="mb-3">Layanan</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/membership_public" class="text-white text-decoration-none">Membership</a></li>
+                        <li><a href="/prabooking_public" class="text-white text-decoration-none">Booking</a></li>
+                    </ul>
+                </div>
+                <!-- Tambahkan Kolom Baru -->
+                <div class="col-md-3">
+                    <h5 class="mb-3">Alamat</h5>
+                    <div>
+                        <a class="text-decoration-none text-white" href="https://maps.app.goo.gl/JTWUAjuuS6SjQQpT7">Jl.
+                            HR. Lukman No.8, Cirimekar, Kec. Cibinong, Kabupaten Bogor, Jawa Barat 16917</a>
+                    </div>
+                </div>
+                <div class="text-center mt-5">
+                    <p>&copy; 2024 JSA Sports Hall</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
